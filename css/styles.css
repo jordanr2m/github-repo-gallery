@@ -141,6 +141,8 @@ ul {
 }
 /* ------- */
 
+
+/* Styles for JS created Repo Info elements */
 .filter-repos {
     width: 300px;
     margin-top: 1em;
@@ -194,6 +196,7 @@ section.repo-data {
     padding: 0em 0.5em;
     margin: 0.5em 0;
 }
+/* ------- */
 
 .repo-data {
     width: 100%;
@@ -232,6 +235,9 @@ section.repo-data {
     margin-top: 0;
 }
 
+
+/* ----- Media Querries ----- */
+/* Tablet */
 @media (min-width: 700px) {
     .user-info div {
         width: 45%;
@@ -247,12 +253,18 @@ section.repo-data {
     }
 }
 
+/* Small screens */
 @media (max-width: 700px) {
+    .user-info div {
+        padding: 0 0.5em;
+    }
+    
     .user-info div p {
         margin: 10px;
     }
 }
 
+/* Desktop */
 @media (min-width: 1200px) {
     .repo-list li {
         width: 30%;
