@@ -196,7 +196,6 @@ section.repo-data {
     padding: 0em 0.5em;
     margin: 0.5em 0;
 }
-/* ------- */
 
 .repo-data {
     width: 100%;
@@ -224,7 +223,7 @@ section.repo-data {
 }
 
 .button-container {
-    width: 100%;
+    width: 100%; /* Must have this in order for button to dispaly properly */
     background-color: #fff;
     padding-left: 2em;
     padding-bottom: 2em;
