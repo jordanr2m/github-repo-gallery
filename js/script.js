@@ -15,20 +15,20 @@ const backButton = document.querySelector(".view-repos");
 // Search bar input
 const filterInput = document.querySelector(".filter-repos");
 
-
 const getGitData = async function () {
     const userInfo = await fetch(`https://api.github.com/users/${username}`);
     const data = await userInfo.json();
-    // console.log(data); -> Shows all object properties
+    // data represents info pulled from user's profile
     displayUserData(data);
 };
-// Must call this function in order for data to be pulled!
+// Must call this function on pageload
 getGitData();
 
+// Populate user profile info
 const displayUserData = function (data) {
     const userInfoDiv = document.createElement("div");
     userInfoDiv.classList.add("user-info");
-    // Populate the div with the needed elements. Use template literal
+    // Populate div with needed elements
     userInfoDiv.innerHTML = 
         `<figure>
             <img alt="user avatar" src=${data.avatar_url}>
@@ -40,17 +40,18 @@ const displayUserData = function (data) {
             <p><strong>Number of public repos:</strong> ${data.public_repos}</p>
         </div>`;
     profileInfo.append(userInfoDiv);
+    // pull specific user repo data
     getRepos(username);
 };
 
 const getRepos = async function (username) {
     const fetchRepos = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
     const repoData = await fetchRepos.json();
-    // console.log(repoData);
+    // display repos
     displayRepoList(repoData);
 };
-// getRepos(); - Checking that we are pulling list of repos
 
+// Show list of all repos on homepage
 const displayRepoList = function (repos) {
     filterInput.classList.remove("hide");
     for (const repo of repos) {
@@ -59,13 +60,12 @@ const displayRepoList = function (repos) {
         repoItems.innerHTML = `<h3>${repo.name}</h3>`;
         repoList.append(repoItems);
     }
-    /* Can also use a forEach loop here. Use for of instead because we don't need to grab the index number. */
 };
 
+// listen for click on repoList ul
 repoList.addEventListener("click", function (e) {
     if (e.target.matches("h3")) {
         const repoName = e.target.innerText;
-        // console.log(repoName);
         getRepoData(repoName);
     }
 });
@@ -73,12 +73,10 @@ repoList.addEventListener("click", function (e) {
 const getRepoData = async function (repoName) {
     const fetchInfo = await fetch(`https://api.github.com/repos/${username}/${repoName}`);
     const repoInfo = await fetchInfo.json();
-    // console.log(repoInfo);
 
     // Grab languages - fetch can target specific attributes of the data
     const fetchLanguages = await fetch(repoInfo.languages_url);
     const languageData = await fetchLanguages.json();
-    // console.log(languageData);
     
     // Make a list of languages - turn languageData object into an array so that we can easily show it on the page
     const languages = [];
@@ -86,14 +84,16 @@ const getRepoData = async function (repoName) {
         languages.push(language);
     }
 
+    // display secondary screen with individual repo info
     displayRepoData(repoInfo, languages);
 };
 
 const displayRepoData = function (repoInfo, languages) {
-    repoData.innerHTML = ""; // clear section each time
+    repoData.innerHTML = ""; // clears section each time
     repoData.classList.remove("hide");
     allReposContainer.classList.add("hide");
     backButton.classList.remove("hide");
+
     const repoDiv = document.createElement("div");
     repoDiv.innerHTML = 
         `<h3>Name: ${repoInfo.name}</h3>
@@ -104,6 +104,7 @@ const displayRepoData = function (repoInfo, languages) {
     repoData.append(repoDiv);
 };
 
+// back button functionality
 backButton.addEventListener("click", function () {
     allReposContainer.classList.remove("hide");
     repoData.classList.add("hide");
@@ -113,10 +114,10 @@ backButton.addEventListener("click", function () {
 // Dynamic search
 filterInput.addEventListener("input", function (e) {
     const userInput = e.target.value;
-    // console.log(userInput); - Type in search bar to confirm it is working
-    const repos = document.querySelectorAll(".repo");
+    // convert text to lowercase for comparison
     const userInputLower = userInput.toLowerCase();
 
+    const repos = document.querySelectorAll(".repo");
     for (const repo of repos) {
         const lowerCaseValue = repo.innerText.toLowerCase();
         if (lowerCaseValue.includes(userInputLower)) {
