@@ -15,6 +15,7 @@ body {
     justify-content: center;
     margin: 0;
     font-family: "Open Sans", sans-serif;
+    background-color: var(--outline);
     background: url("https://images.pexels.com/photos/430207/pexels-photo-430207.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
     color: #333;
     font-size: 16px;
