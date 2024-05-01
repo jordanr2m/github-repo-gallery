@@ -91,8 +91,8 @@ const getRepoData = async function (repoName) {
 const displayRepoData = function (repoInfo, languages) {
     repoData.innerHTML = ""; // clears section each time
     repoData.classList.remove("hide");
-    allReposContainer.classList.add("hide");
     backButton.classList.remove("hide");
+    allReposContainer.classList.add("hide");
 
     const repoDiv = document.createElement("div");
     repoDiv.innerHTML = 

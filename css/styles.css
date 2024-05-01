@@ -1,3 +1,10 @@
+:root {
+  --intro: #2a1377;
+  --accent: #80cafc;
+  --outline: #4a9ff9;
+  --text: #0f1574;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -8,7 +15,7 @@ body {
     justify-content: center;
     margin: 0;
     font-family: "Open Sans", sans-serif;
-    background-color: #fbf9de;
+    background: url("https://images.pexels.com/photos/430207/pexels-photo-430207.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
     color: #333;
     font-size: 16px;
 }
@@ -27,7 +34,8 @@ body {
 }
 
 .fa-github-alt {
-    color: #f86d58;
+    color: var(--accent);
+    margin-right: 4px;
 }
 
 img {
@@ -42,7 +50,7 @@ h1 {
     font-size: 3.5em;
     text-align: center;
     font-family: "Oswald", sans-serif;
-    background-color: #483978;
+    background-color: var(--intro);
     color: #fff;
     text-transform: uppercase;
     border-top-left-radius: 20px;
@@ -52,7 +60,7 @@ h1 {
 .badge {
     height: 80px;
     width: 50px;
-    background-color: grey;
+    background-color: rgb(183, 183, 183);
     z-index: 98;
     margin-bottom: -35px;
     margin-top: 10px;
@@ -64,7 +72,7 @@ h1 {
 .circle {
     width: 20px;
     height: 20px;
-    background-color: #483978;
+    background-color: var(--intro);
     border-radius: 100%;
     z-index: 99;
     align-self: center;
@@ -80,7 +88,7 @@ h1 {
 h3 {
     width: 100%;
     text-align: center;
-    color: #f86d58;
+    color: var(--text);
 }
 
 ul {
@@ -108,7 +116,7 @@ ul {
     display: flex;
     flex-wrap: wrap; /* For mobile */
     justify-content: center;
-    background-color: #483978;
+    background-color: var(--intro);
     color: white;
     font-size: 18px;
     padding-bottom: 2em;
@@ -120,7 +128,7 @@ ul {
 }
 
 .user-info img {
-    border-radius: 100%;
+    border-radius: 50%;
 }
 
 .user-info div {
@@ -177,7 +185,8 @@ section.repo-data {
 .repo-list li {
     width: 90%;
     margin: 1em 0;
-    border: 1px solid #f86d58;
+    border: 2px solid var(--outline);
+    border-radius: 5px;
     padding: 0.5em;
 }
 
@@ -213,8 +222,9 @@ section.repo-data {
     margin-top: 2em;
     cursor: pointer;
     display: block;
-    background-color: #483978;
-    border: 1px solid #483978;
+    background-color: var(--intro);
+    border: 1px solid var(--intro);
+    border-radius: 3px;
 }
 
 .repo-data .visit:hover {
@@ -254,6 +264,11 @@ section.repo-data {
 
 /* Small screens */
 @media (max-width: 700px) {
+    h1 {
+        font-size: 3em;
+        padding: 60px 24px 30px 24px;
+    }
+
     .user-info div {
         padding: 0 0.5em;
     }
